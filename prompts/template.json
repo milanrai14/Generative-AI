@@ -1,0 +1,17 @@
+{
+    "name": null,
+    "input_variables": [
+        "length_input",
+        "paper_input",
+        "style_input"
+    ],
+    "optional_variables": [],
+    "output_parser": null,
+    "partial_variables": {},
+    "metadata": null,
+    "tags": null,
+    "template": "\nYou are an expert research assistant.\n\nExplain the following research paper:\n\nResearch Paper: {paper_input}\n\nExplanation Style: {style_input}\n\nExplanation Length: {length_input}\n\nPlease provide a clear and accurate explanation of the paper.\n\nCover:\n1. The main problem\n2. Proposed approach\n3. Key concepts\n4. Methodology\n5. Important results\n6. Why the paper is significant\n\nAdapt the explanation according to the selected style and length.\n",
+    "template_format": "f-string",
+    "validate_template": true,
+    "_type": "prompt"
+}

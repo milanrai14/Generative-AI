@@ -1,7 +1,7 @@
 from langchain_ollama import ChatOllama
 from dotenv import load_dotenv
 import streamlit as st
-from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate, load_prompt
 
 load_dotenv()
 
@@ -61,37 +61,40 @@ length_input = st.selectbox(
 # -----------------------------
 # Prompt Template
 # -----------------------------
-template = PromptTemplate(
-    input_variables=[
-        "paper_input",
-        "style_input",
-        "length_input"
-    ],
-    template="""
-You are an expert research assistant.
+# template = PromptTemplate(
+#     input_variables=[
+#         "paper_input",
+#         "style_input",
+#         "length_input"
+#     ],
+#     template="""
+# You are an expert research assistant.
 
-Explain the following research paper:
+# Explain the following research paper:
 
-Research Paper: {paper_input}
+# Research Paper: {paper_input}
 
-Explanation Style: {style_input}
+# Explanation Style: {style_input}
 
-Explanation Length: {length_input}
+# Explanation Length: {length_input}
 
-Please provide a clear and accurate explanation of the paper.
+# Please provide a clear and accurate explanation of the paper.
 
-Cover:
-1. The main problem
-2. Proposed approach
-3. Key concepts
-4. Methodology
-5. Important results
-6. Why the paper is significant
+# Cover:
+# 1. The main problem
+# 2. Proposed approach
+# 3. Key concepts
+# 4. Methodology
+# 5. Important results
+# 6. Why the paper is significant
 
-Adapt the explanation according to the selected style and length.
-""", 
-validate_template=True
-)
+# Adapt the explanation according to the selected style and length.
+# """, 
+# validate_template=True
+# )
+
+#Using the template 
+template = load_prompt('template.json')
 
 
 # -----------------------------
