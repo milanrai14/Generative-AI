@@ -89,7 +89,8 @@ Cover:
 6. Why the paper is significant
 
 Adapt the explanation according to the selected style and length.
-"""
+""", 
+validate_template=True
 )
 
 
