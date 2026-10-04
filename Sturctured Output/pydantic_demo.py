@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 class Student(BaseModel):
@@ -23,8 +23,9 @@ print(type(student1))
 class Student1(BaseModel):
     name: str = 'milan'
     age: Optional[int] = None
+    email: EmailStr
 
-new_student = {'age': 45}
+new_student = {'age': 45, 'email': "hha"}
 
 student4 = Student1(**new_student)
 print(student4)
