@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import Optional
 
 class Student(BaseModel):
     name: str
@@ -22,10 +22,11 @@ print(type(student1))
 #setting default value
 class Student1(BaseModel):
     name: str = 'milan'
+    age: Optional[int] = None
 
-new_student = {}
+new_student = {'age': 45}
 
 student4 = Student1(**new_student)
-print(student4.name)
+print(student4)
 
 
