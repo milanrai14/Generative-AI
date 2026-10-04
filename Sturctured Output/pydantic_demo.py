@@ -13,3 +13,8 @@ print(student)
 student1 = Student.model_validate(new_student)
 print(student1)
 print(type(student1))
+
+#make error
+new_student3 = {'name':  1}
+error_student = Student.model_validate(new_student3)
+print(error_student)
