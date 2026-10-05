@@ -25,4 +25,8 @@ print(result)
 result = prompt.invoke({'topic': 'cricket'})
 result2 = model.invoke(result)
 result3 = parser.invoke(result2)
-print(result3.content)
+print(result3)
+
+
+# visualize the chhain
+chain.get_graph().print_ascii()
