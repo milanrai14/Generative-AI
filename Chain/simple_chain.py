@@ -14,8 +14,15 @@ prompt = PromptTemplate(
 
 parser = StrOutputParser()
 
+#with chain
 chain = prompt | model | parser
 
 result = chain.invoke({'topic': 'football'})
 
 print(result)
+
+#without chain
+result = prompt.invoke({'topic': 'cricket'})
+result2 = model.invoke(result)
+result3 = parser.invoke(result2)
+print(result3.content)
