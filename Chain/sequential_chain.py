@@ -21,3 +21,8 @@ promt2 = PromptTemplate(
 #parser 
 parser = StrOutputParser()
 
+#building chain 
+chain = prompt1 | model | parser | promt2 | model | parser
+
+result = chain.invoke({'topic': 'Nepal'})
+print(result)
