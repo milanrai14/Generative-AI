@@ -18,3 +18,6 @@ promt2 = PromptTemplate(
     input_variables=['text']
 )
 
+#parser 
+parser = StrOutputParser()
+
