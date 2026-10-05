@@ -7,16 +7,13 @@ model = ChatOllama(
 )
 parser = JsonOutputParser()
 
-#1st prompt -> detailed report
-template1 = PromptTemplate(
+template = PromptTemplate(
     template="Give me the name, age and city of a fictional person. \n {format_instruction}", 
     input_variables=[], 
     partial_variables={'format_instruction': parser.get_format_instructions()}
 )
 
-prompt = template1.format()
+chain = template | model | parser
+result = chain.invoke({})
 
-result = model.invoke(prompt)
-
-final_result = parser.parse(result.content)
-print(final_result)
+print(result)
