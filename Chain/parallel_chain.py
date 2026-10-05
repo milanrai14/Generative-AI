@@ -28,3 +28,14 @@ parallel_chain = RunnableParallel(
     facts = facts_chain, 
     popularity = popularit_chain
 )
+
+result = parallel_chain.invoke({"text": "football"})
+
+print("FACTS: ")
+print(result['facts'])
+
+print('\n Popularity')
+print(result['popularity'])
+
+print('*' * 100)
+print(result)
