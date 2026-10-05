@@ -26,3 +26,6 @@ chain = prompt1 | model | parser | promt2 | model | parser
 
 result = chain.invoke({'topic': 'Nepal'})
 print(result)
+
+#visualize the chain
+chain.get_graph().print_ascii()
