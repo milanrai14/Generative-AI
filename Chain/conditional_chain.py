@@ -1,7 +1,7 @@
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnableParallel
+from langchain_core.runnables import RunnableParallel, RunnableBranch, RunnableLambda
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 from typing import Literal
@@ -51,5 +51,20 @@ or:
 
 classifier_chain = prompt1 | model | parser2
 
-result = classifier_chain.invoke({'feedback': "this is a wonderful smaartphone"})
-print(result)
+# result = classifier_chain.invoke({'feedback': "this is a wonderful smaartphone"})
+# print(result)
+
+prompt2 = PromptTemplate(
+    template= 'Write an approptiate response to this positive feedback \n {feedback}', 
+    input_variables=['feedback']
+)
+prompt3 = PromptTemplate(
+    template= 'Write an approptiate response to this negative feedback \n {feedback}', 
+    input_variables=['feedback']
+)
+#Branching
+branch_chain = RunnableBranch(
+    (lambda x: x['sentiment'] == 'positive', prompt2 | model | parser), 
+    (lambda x:x['sentiment']== 'negative', prompt3 | model | parser),
+    lambda x: "Could not find the sentiment."
+)
