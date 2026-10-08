@@ -17,5 +17,5 @@ prompt1 = PromptTemplate(
 
 classifier_chain = prompt1 | model | parser
 
-result = classifier_chain.invoke({'feedback': "this is a terrible smaartphone"})
+result = classifier_chain.invoke({'feedback': "this is a wonderful smaartphone"})
 print(result)
