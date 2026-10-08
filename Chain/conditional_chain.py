@@ -64,7 +64,22 @@ prompt3 = PromptTemplate(
 )
 #Branching
 branch_chain = RunnableBranch(
-    (lambda x: x['sentiment'] == 'positive', prompt2 | model | parser), 
-    (lambda x:x['sentiment']== 'negative', prompt3 | model | parser),
+    (lambda x: x.sentiment == 'positive', prompt2 | model | parser), 
+    (lambda x:x.sentiment== 'negative', prompt3 | model | parser),
     RunnableLambda(lambda x: "Could not find the sentiment.")
 )
+
+chain = classifier_chain | branch_chain
+
+result1 = chain.invoke({'feedback': 'This is a teririble phone'})
+result2 =chain.invoke({'feedback': 'This is a wonderful phone'})
+
+print('*'*50)
+print("Result 1")
+print(result1)
+print('/n')
+
+print('*'*50)
+print("Result 2")
+print(result2)
+print('/n')
