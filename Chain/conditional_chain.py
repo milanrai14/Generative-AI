@@ -10,3 +10,12 @@ model = ChatOllama(
 
 parser = StrOutputParser()
 
+prompt1 = PromptTemplate(
+    template='Classify the sentiment of the following feedback text into positive or negative \n {feedback}', 
+    input_variables=['feedback']
+)
+
+classifier_chain = prompt1 | model | parser
+
+result = classifier_chain.invoke({'feedback': "this is a terrible smaartphone"})
+print(result)
