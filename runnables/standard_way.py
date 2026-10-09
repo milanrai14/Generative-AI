@@ -42,3 +42,13 @@ class NakliPromtTemplate(Runnable):
         return self.template.format(**input_dict)
 
 llm = NakliLLM()
+
+
+class RunnableConnector(Runnable): 
+    def __init__(self, runable_list):
+        self.runable_list = runable_list
+
+    def invoke(self, input_data):
+
+        for runable in self.runable_list:
+            runable.invoke(input_data)
