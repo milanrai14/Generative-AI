@@ -21,3 +21,15 @@ prompt2 = PromptTemplate(
 
 parser = StrOutputParser()
 
+
+joke_gen_chain = RunnableSequence(prompt1, model, parser)
+
+
+parallel_chain = RunnableParallel({
+    'joke': RunnablePassthrough(), 
+    'explanation': RunnableSequence(prompt2, model, parser)
+})
+
+final_chain = RunnableSequence(joke_gen_chain, parallel_chain)
+
+print(final_chain.invoke({'topic': 'cricket'}))
