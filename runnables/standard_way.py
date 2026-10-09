@@ -9,9 +9,7 @@ class Runnable(ABC):
 class NakliLLM(Runnable): 
     def __init__(self):
         print("LLM Created")
-
-    
-
+        
     def predict(self, prompt):
         response_list = [
             'KTM is the capital of Nepal', 
@@ -41,8 +39,20 @@ class NakliPromtTemplate(Runnable):
     def invoke(self, input_dict): 
         return self.template.format(**input_dict)
 
-llm = NakliLLM()
 
+class NakliStrOutputParser(Runnable): 
+    def __init__(self):
+        pass
+
+    def invoke(self, input_data):
+        return input_data['response']
+
+llm = NakliLLM()
+template = NakliPromtTemplate(
+    template='Write a {length} poem about {topic}', 
+    input_variables=['length', 'topic']
+)
+parser = NakliStrOutputParser()
 
 class RunnableConnector(Runnable): 
     def __init__(self, runable_list):
@@ -51,4 +61,9 @@ class RunnableConnector(Runnable):
     def invoke(self, input_data):
 
         for runable in self.runable_list:
-            runable.invoke(input_data)
+            input_data = runable.invoke(input_data)
+        return input_data
+
+chain = RunnableConnector([template, llm, parser])
+result = chain.invoke({'length': 'short', 'topic': 'Nepal'})
+print(result)
