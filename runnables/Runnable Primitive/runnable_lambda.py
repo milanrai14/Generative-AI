@@ -1,9 +1,21 @@
 from langchain_ollama import ChatOllama
-from langchain_core.runnables import RunnableLambda
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnableSequence, RunnableParallel, RunnableLambda
 
-def word_counter(text): 
-    return len(text.split())
+model = ChatOllama(
+    model='llama3.2'
+)
 
-runnable_word_counter = RunnableLambda(word_counter)
+prompt = PromptTemplate(
+    template='Write a joke about {topic}', 
+    input_variables=['topic']
+)
 
-print(runnable_word_counter.invoke("Hi there how are you"))
+parser = StrOutputParser()
+
+
+joke_gen_chain = RunnableSequence(prompt, model, parser)
+
+
+paralle_chain = RunnableParallel()
