@@ -19,3 +19,4 @@ print(result[0])
 
 print("total chunk")
 print(len(result))
+print(result[0].page_content)
