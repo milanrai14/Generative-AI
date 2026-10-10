@@ -16,8 +16,21 @@ model = ChatOllama(
 parser = StrOutputParser()
 
 prompt = PromptTemplate(
-    template='Describe the given topic \n {topic} from the following {text}', 
-    input_variables=['topic', 'text']
+    template="""
+You are a helpful assistant.
+
+Describe the topic: {topic}
+
+Use the following webpage content as your source.
+If the content does not contain relevant information,
+say that the information is not available in the provided text.
+
+Webpage content:
+{text}
+
+Write a clear explanation in simple English.
+""",
+    input_variables=["topic", "text"]
 )
 
 
