@@ -1,4 +1,9 @@
 from langchain_community.document_loaders import TextLoader
 
 
-loader = TextLoader()
+loader = TextLoader('football.txt', encoding='utf-8')
+
+docs = loader.load()
+print(docs)
+print("=" * 50)
+print(type(docs))
