@@ -13,19 +13,19 @@ parser = StrOutputParser()
 loader = TextLoader('football.txt', encoding='utf-8')
 
 docs = loader.load()
-print(docs)
-print("=" * 50)
-print(type(docs))
-print(len(docs))
-print("="*100)
-print(docs[0])
-print("="*100)
-print(docs[0].page_content)
-print("="*100)
-print(docs[0].metadata)
+# print(docs)
+# print("=" * 50)
+# print(type(docs))
+# print(len(docs))
+# print("="*100)
+# print(docs[0])
+# print("="*100)
+# print(docs[0].page_content)
+# print("="*100)
+# print(docs[0].metadata)
 
 prompt = PromptTemplate(
-    template='Write a summany for the following text \n {text}',
+    template='Write a summary for the following text \n {text}',
     input_variables=['text']
 )
 
