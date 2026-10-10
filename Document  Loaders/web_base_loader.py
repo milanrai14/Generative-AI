@@ -36,7 +36,7 @@ Write a clear explanation in simple English.
 
 chain = prompt | model | parser
 
-result = chain.invoke({'topic': 'jackfuit', 'text': docs[0].page_content})
+result = chain.invoke({'topic': 'Latahar tree regeneration and the impact of human activities on its population', 'text': docs[0].page_content})
 print(result)
 # print(len(docs))
 
