@@ -16,11 +16,16 @@ model = ChatOllama(
 parser = StrOutputParser()
 
 prompt = PromptTemplate(
-    template='Describe the given topic \n {topic}', 
-    input_variables=['topic']
+    template='Describe the given topic \n {topic} from the following {text}', 
+    input_variables=['topic', 'text']
 )
 
-print(len(docs))
 
-for doc in docs: 
-    print(doc.page_content)
+chain = prompt | model | parser
+
+result = chain.invoke({'topic': 'jackfuit', 'text': docs[0].page_content})
+print(result)
+# print(len(docs))
+
+# for doc in docs: 
+#     print(doc.page_content)
