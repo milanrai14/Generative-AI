@@ -6,4 +6,16 @@ loader = PyPDFLoader('dl-curriculum.pdf')
 
 docs = loader.load()
 
-text = docs[0].page_content
+
+spliter = CharacterTextSplitter(
+    chunk_size=100, 
+    chunk_overlap=0,
+    separator=''
+)
+
+result = spliter.split_documents(docs)
+
+print(result[0])
+
+print("total chunk")
+print(len(result))
