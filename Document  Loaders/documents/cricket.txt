@@ -1,0 +1,11 @@
+# Cricket Summary
+
+Cricket is a popular team sport played between two teams of eleven players each. The game is played on a field with a central pitch, where the bowler delivers the ball to the batter, who tries to score runs.
+
+The main formats of cricket are Test cricket, One Day International (ODI), and Twenty20 (T20). Test matches can last up to five days, ODIs usually consist of 50 overs per team, and T20 matches consist of 20 overs per team.
+
+The main objective is to score more runs than the opposing team. Players score runs by running between the wickets or hitting the ball to the boundary. A boundary typically scores four runs when the ball reaches the boundary after touching the ground, and six runs when the ball crosses the boundary without touching the ground.
+
+Cricket requires batting, bowling, fielding, teamwork, concentration, and strategic decision-making. Important competitions include the ICC Cricket World Cup, ICC T20 World Cup, and various domestic leagues such as the Indian Premier League.
+
+Cricket promotes teamwork, discipline, fitness, patience, and sportsmanship. It is enjoyed by millions of people around the world and has a particularly strong following in countries such as Nepal, India, Australia, and England.
