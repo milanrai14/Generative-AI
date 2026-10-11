@@ -17,3 +17,11 @@ The temperature is around 25 degrees.
 Neural networks learn patterns from data.
 Deep learning uses multiple neural network layers.
 """
+
+docs = text_splitter.create_documents([sample])
+
+print("Total chunks:", len(docs))
+print("*" * 100)
+for i, doc in enumerate(docs, start=1):
+    print(f"\nChunk {i}:")
+    print(doc.page_content)
