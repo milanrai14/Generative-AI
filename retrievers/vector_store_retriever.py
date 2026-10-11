@@ -11,7 +11,22 @@ documents = [
 ]
 
 #initilize the embeddings model 
-embedding = OllamaEmbeddings(
+embeddings = OllamaEmbeddings(
     model="nomic-embed-text"
 )
 
+vector_store = Chroma.from_documents(
+    documents=documents,
+    embedding=embeddings,
+    collection_name="ai_notes",
+    persist_directory="./chroma_db"
+)
+
+#Convert vectorstoe into a retriver
+retriver = vector_store.as_retriever(search_kwargs={"k":2})
+
+query = "What is Chroma used for"
+
+result = retriver.invoke(query)
+for res in result:
+    print(res)
