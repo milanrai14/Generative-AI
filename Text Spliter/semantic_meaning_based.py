@@ -1,9 +1,11 @@
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_ollama.embeddings import OllamaEmbeddings
 
-
+embeddings = OllamaEmbeddings(
+    model='nomic-embed-text'
+)
 text_splitter = SemanticChunker(
-    OllamaEmbeddings(), 
+    embeddings, 
     breakpoint_threshold_type="standard_deviation", 
     breakpoint_threshold_amount=1
 )
