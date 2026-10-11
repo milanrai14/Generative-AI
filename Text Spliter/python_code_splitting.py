@@ -26,7 +26,7 @@ else:
 
 splitter = RecursiveCharacterTextSplitter.from_language(
     language= Language.PYTHON, 
-    chunk_size = 300, 
+    chunk_size = 30, 
     chunk_overlap=0
 )
 
