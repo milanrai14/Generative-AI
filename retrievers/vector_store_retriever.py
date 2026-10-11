@@ -28,5 +28,9 @@ retriver = vector_store.as_retriever(search_kwargs={"k":2})
 query = "What is Chroma used for"
 
 result = retriver.invoke(query)
+# for res in result:
+#     print(res)
+result = vector_store.similarity_search(query, k=2)
+
 for res in result:
     print(res)
