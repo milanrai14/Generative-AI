@@ -23,3 +23,14 @@ if student1.is_passing():
 else:
     print("The student is not passing.")
 """
+
+splitter = RecursiveCharacterTextSplitter.from_language(
+    language= Language.PYTHON, 
+    chunk_size = 300, 
+    chunk_overlap=0
+)
+
+chunks = splitter.split_text(text)
+
+print(len(chunks))
+print(chunks[1])
