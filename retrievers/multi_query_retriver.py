@@ -30,7 +30,7 @@ vector_store = Chroma.from_documents(
 )
 
 #create a object of multi query retriver 
-retriver = MultiQueryRetriever(
+retriver = MultiQueryRetriever.from_llm(
     retriever=vector_store.as_retriever(), 
     llm =model
 )
