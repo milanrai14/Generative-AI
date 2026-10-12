@@ -32,3 +32,13 @@ retriver = vector_store.as_retriever(
         "lambda_mult":0.5 #Balances relevance and diversity equally.
     }
 )
+
+#retrieve diverse documents
+query = "What is machine learning?"
+
+result = retriver.invoke(query)
+
+#display
+for i, doc in enumerate(result, start=1): 
+    print(f"\nDocument {i}:")
+    print(doc.page_content)
