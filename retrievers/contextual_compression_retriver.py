@@ -6,7 +6,7 @@ from langchain_classic.retrievers.document_compressors import LLMChainExtractor
 
 #Create embeddings
 embeddings = OllamaEmbeddings(
-    model="llama3.2"
+    model="nomic-embed-text"
 )
 
 #Create a document
@@ -60,6 +60,7 @@ retriever = ContextualCompressionRetriever(
 #Retrieve compressed documents
 query = "What are the applications of machine learning?"
 results = retriever.invoke(query)
+
 
 #Display the result
 for i, doc in enumerate(results, start=1):
