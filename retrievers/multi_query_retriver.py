@@ -2,6 +2,12 @@ from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
 from langchain_core.documents import Document
 from langchain_classic.retrievers import MultiQueryRetriever
+from langchain_ollama import ChatOllama
+
+#create model 
+model = ChatOllama(
+    model='llama3.2'
+)
 
 #Createing a embeddings model 
 embeddings = OllamaEmbeddings(
@@ -16,3 +22,21 @@ documents = [
     Document(page_content="Machine learning is a subset of artificial intelligence."),
     Document(page_content="Python is widely used for programming.")
 ]
+
+vector_store = Chroma.from_documents(
+    documents=documents, 
+    embedding=embeddings, 
+    collection_name='multiquery'
+)
+
+#create a object of multi query retriver 
+retriver = MultiQueryRetriever(
+    retriever=vector_store.as_retriever(), 
+    llm =model
+)
+query = "What is machine learning?"
+results = retriver.invoke(query)
+
+for i, doc in enumerate(results, start=1):
+    print(f"\nDocument {i}:")
+    print(doc.page_content)
