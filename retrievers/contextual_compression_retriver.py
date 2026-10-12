@@ -2,7 +2,7 @@ from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from langchain_classic.retrievers import ContextualCompressionRetriever
-from langchain_core.retrievers.document_compressors import LLMChainExtractor
+from langchain_classic.retrievers.document_compressors import LLMChainExtractor
 
 #Create embeddings
 embeddings = OllamaEmbeddings(
