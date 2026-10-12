@@ -31,3 +31,37 @@ documents = [
         )
     ),
 ]
+
+#Create a vector store
+vectorstore = Chroma.from_documents(
+    documents=documents,
+    embedding=embeddings,
+    collection_name="compression_demo"
+)
+
+#create a base retriever
+base_retriever = vectorstore.as_retriever(
+    search_kwargs={"k": 3}
+)
+
+#Create a LLM
+llm = ChatOllama(model="llama3.2", temperature=0)
+
+#Create the compressor
+compressor = LLMChainExtractor.from_llm(llm)
+
+
+#Create the compression retriever
+retriever = ContextualCompressionRetriever(
+    base_compressor=compressor,
+    base_retriever=base_retriever
+)
+
+#Retrieve compressed documents
+query = "What are the applications of machine learning?"
+results = retriever.invoke(query)
+
+#Display the result
+for i, doc in enumerate(results, start=1):
+    print(f"\nDocument {i}:")
+    print(doc.page_content)
