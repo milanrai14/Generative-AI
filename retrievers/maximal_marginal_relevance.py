@@ -12,6 +12,7 @@ documents = [
     Document(page_content="Machine learning learns patterns from data."),
     Document(page_content="ML algorithms identify patterns in datasets"), 
     Document(page_content="Deep learning use neural networks with multiple layers"), 
+    Document(page_content="Machine learning is a subset of artificial intelligence."),
     Document(page_content="Python is widely used for programming.")
 ]
 
@@ -24,10 +25,10 @@ vector_store = Chroma.from_documents(
 
 # create an MMR retriever
 retriver = vector_store.as_retriever(
-    search_type="mmr",
+    search_type="mmr", #Enables maximal marginal relevance retrieval.
     search_kwargs = {
-        "k":3, 
-        "fetch_k":5, 
-        "lambda_mult":0.5
+        "k":3, #Returns 3 final candiate
+        "fetch_k":5, #Initially retrieves 5 candidate documents for MMR to consider.
+        "lambda_mult":0.5 #Balances relevance and diversity equally.
     }
 )
