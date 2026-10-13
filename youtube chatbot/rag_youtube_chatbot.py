@@ -8,9 +8,10 @@ from langchain_core.prompts import PromptTemplate
 video_id = "LPZh9BOjkQs"
 
 try:
-    transcript_list = YouTubeTranscriptApi.fetch(video_id, langauages=['en'])
-
-    transcript = " ".join(chunk["text"] for chunk in transcript_list)
+    transcript_list = YouTubeTranscriptApi().fetch(video_id, languages=['en'])
+    # print(transcript_list)
+    print("*" *100)
+    transcript = " ".join(chunk.text for chunk in transcript_list)
     print(transcript)
 except TranscriptsDisabled: 
     print("No captione avainlabe for this video")
