@@ -60,3 +60,21 @@ lmm = ChatOllama(
     model="llama3.2",
     temperature=0.2
 )
+
+prompt = PromptTemplate(
+    template="""
+      You are a helpful assistant.
+      Answer Only from the provied transcript context.
+      If the context is insufficient, just say you don't know.
+
+      {context}
+      Question: {question}
+
+    """,
+    input_variables=['context', 'question']
+)
+
+question = "What is LLM?"
+retrived_docs = retriver.invoke(question)
+
+print(retrived_docs)
