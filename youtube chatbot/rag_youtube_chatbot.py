@@ -1,1 +1,5 @@
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_chroma import Chroma
+from langchain_core.prompts import PromptTemplate
