@@ -47,7 +47,8 @@ vector_store = Chroma.from_documents(chunks, embedding)
 retriver = vector_store.as_retriever(search_type="similarity",search_kwargs={"k":4})
 # print(retriver)
 
-question = "Explain transformer architecture."
+question = "Explain the transformer architecture."
+question = "Explain neuclear bomb."
 result = retriver.invoke(question)
 # print(len(result))
 # print(result[0].page_content)
