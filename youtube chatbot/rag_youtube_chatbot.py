@@ -45,10 +45,10 @@ vector_store = Chroma.from_documents(chunks, embedding)
 
 #Retriver
 retriver = vector_store.as_retriever(search_type="similarity",search_kwargs={"k":4})
-print(retriver)
+# print(retriver)
 
-query = "Explain transformer architecture."
-result = retriver.invoke(query)
+question = "Explain transformer architecture."
+result = retriver.invoke(question)
 # print(len(result))
 # print(result[0].page_content)
 
@@ -56,7 +56,7 @@ result = retriver.invoke(query)
 #agumentation
 # merging retriver and query
 
-lmm = ChatOllama(
+llm = ChatOllama(
     model="llama3.2",
     temperature=0.2
 )
@@ -74,11 +74,18 @@ prompt = PromptTemplate(
     input_variables=['context', 'question']
 )
 
-question = "What is LLM?"
+# question = "What is LLM?"
 retrived_docs = retriver.invoke(question)
 
 # print(retrived_docs)
 
 #Connatination
-context_text= " ".join(doc.page_content for doc in retrived_docs)
-print(context_text)
+context_text= "\n\n".join(doc.page_content for doc in retrived_docs)
+# print(context_text)
+final_prompt = prompt.invoke({"context": context_text, "question": question})
+
+# print(final_prompt)
+#Generation
+
+answer = llm.invoke(final_prompt)
+print(answer.content)
