@@ -94,5 +94,16 @@ final_prompt = prompt.invoke({"context": context_text, "question": question})
 answer = llm.invoke(final_prompt)
 print(answer.content)
 
-# making the chain
-chains = 
+# Building a chain
+def format_docs(retrieved_docs): 
+    context_text= "\n\n".join(doc.page_content for doc in retrived_docs)
+    return context_text
+
+parallel_chain = RunnableParallel({
+    'context': retriver | RunnableLambda(format_docs),
+    'question': RunnablePassthrough()
+
+})
+
+result = parallel_chain.invoke("Who is Milan")
+print(result)
