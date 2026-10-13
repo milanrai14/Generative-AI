@@ -77,4 +77,8 @@ prompt = PromptTemplate(
 question = "What is LLM?"
 retrived_docs = retriver.invoke(question)
 
-print(retrived_docs)
+# print(retrived_docs)
+
+#Connatination
+context_text= " ".join(doc.page_content for doc in retrived_docs)
+print(context_text)
