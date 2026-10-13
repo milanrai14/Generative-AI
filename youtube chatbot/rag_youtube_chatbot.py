@@ -4,7 +4,8 @@ from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.prompts import PromptTemplate
 
-#indexing
+##indexing
+#Document downloading
 video_id = "LPZh9BOjkQs"
 
 try:
@@ -13,5 +14,21 @@ try:
     print("*" *100)
     transcript = " ".join(chunk.text for chunk in transcript_list)
     print(transcript)
+    print(type(transcript))
 except TranscriptsDisabled: 
     print("No captione avainlabe for this video")
+
+#text spliting
+spliter = RecursiveCharacterTextSplitter(
+    chunk_size=1000, 
+    chunk_overlap =200
+)
+chunks = spliter.create_documents([transcript])
+
+#embeddings 
+embedding = OllamaEmbeddings(
+    model="nomic-embed-text"
+)
+
+#vector store
+vector_store = Chroma.from_documents(chunks, embedding)
