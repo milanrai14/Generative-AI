@@ -105,11 +105,11 @@ parallel_chain = RunnableParallel({
 
 })
 
-parallel_chain.invoke("Who is Milan")
+# parallel_chain.invoke("Who is Milan")
 
 parser = StrOutputParser()
 
 main_chain = parallel_chain | prompt | llm | parser
 
-result = main_chain.invoke("Can you summarize the video?")
+result = main_chain.invoke("What is LLM?")
 print(result)
