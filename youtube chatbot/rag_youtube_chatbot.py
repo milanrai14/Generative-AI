@@ -32,3 +32,13 @@ embedding = OllamaEmbeddings(
 
 #vector store
 vector_store = Chroma.from_documents(chunks, embedding)
+data = vector_store.get(include=["documents", "embeddings", "metadatas"])
+
+print("Documents:")
+print(data["documents"])
+
+print("\nEmbeddings:")
+print(data["embeddings"])
+
+print("\nMetadata:")
+print(data["metadatas"])
