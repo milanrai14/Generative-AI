@@ -51,3 +51,12 @@ query = "Explain transformer architecture."
 result = retriver.invoke(query)
 # print(len(result))
 # print(result[0].page_content)
+
+
+#agumentation
+# merging retriver and query
+
+lmm = ChatOllama(
+    model="llama3.2",
+    temperature=0.2
+)
