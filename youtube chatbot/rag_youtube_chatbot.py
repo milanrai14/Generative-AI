@@ -13,8 +13,8 @@ try:
     # print(transcript_list)
     print("*" *100)
     transcript = " ".join(chunk.text for chunk in transcript_list)
-    print(transcript)
-    print(type(transcript))
+    # print(transcript)
+    # print(type(transcript))
 except TranscriptsDisabled: 
     print("No captione avainlabe for this video")
 
@@ -32,13 +32,22 @@ embedding = OllamaEmbeddings(
 
 #vector store
 vector_store = Chroma.from_documents(chunks, embedding)
-data = vector_store.get(include=["documents", "embeddings", "metadatas"])
+# data = vector_store.get(include=["documents", "embeddings", "metadatas"])
 
-print("Documents:")
-print(data["documents"])
+# print("Documents:")
+# print(data["documents"])
 
-print("\nEmbeddings:")
-print(data["embeddings"])
+# print("\nEmbeddings:")
+# print(data["embeddings"])
 
-print("\nMetadata:")
-print(data["metadatas"])
+# print("\nMetadata:")
+# print(data["metadatas"])
+
+#Retriver
+retriver = vector_store.as_retriever(search_type="similarity",search_kwargs={"k":4})
+print(retriver)
+
+query = "Explain transformer architecture."
+result = retriver.invoke(query)
+# print(len(result))
+# print(result[0].page_content)
