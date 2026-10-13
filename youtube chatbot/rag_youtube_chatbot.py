@@ -3,6 +3,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.prompts import PromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
+from langchain_core.output_parsers import StrOutputParser
+
 
 ##indexing
 #Document downloading
@@ -90,3 +93,6 @@ final_prompt = prompt.invoke({"context": context_text, "question": question})
 
 answer = llm.invoke(final_prompt)
 print(answer.content)
+
+# making the chain
+chains = 
