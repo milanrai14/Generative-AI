@@ -64,5 +64,7 @@ for tool_call in ai_message.tool_calls:
     #execute the first tool and get the value of conversion rate
     if tool_call['name'] =='get_conversion_factor':
         tool_message1 =get_conversion_factor.invoke(tool_call)
-        print(tool_message1)
+        #fetch the conversion rate
+        print(tool_message1.content)
+
     #execute the second tool using the conversion rate from first tool
