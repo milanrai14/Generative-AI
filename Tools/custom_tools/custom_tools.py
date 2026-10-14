@@ -22,3 +22,8 @@ print(result)
 print(multiply.name)
 print(multiply.description)
 print(multiply.args)
+
+#LLM sees this
+final_result_llm_see = multiply.args_schema.model_json_schema()
+print("*" * 50)
+print(final_result_llm_see)
