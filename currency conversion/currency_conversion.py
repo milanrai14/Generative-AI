@@ -11,7 +11,19 @@ def get_conversion_factor(base_currency: str, target_currency: str)-> float:
     url = f"https://v6.exchangerate-api.com/v6/65cf317538c6f37cdc073ec6/latest/{base_currency.upper()}"
 
     response = requests.get(url)
-    return response.json()
+    response.raise_for_status()
+    data = response.json()
+
+    if data.get("result") != "success":
+        raise ValueError(f"API error: {data}")
+
+    rates = data['conversion_rates']
+    target = target_currency.upper()
+
+    if target not in rates: 
+        raise ValueError(f"Unsupported currency: {target}")
+    
+    return rates[target]
 
 
 result = get_conversion_factor.invoke({"base_currency":"USD","target_currency": "INR"})
