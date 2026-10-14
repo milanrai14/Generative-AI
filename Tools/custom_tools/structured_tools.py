@@ -9,3 +9,9 @@ class MultiplyInput(BaseModel):
 def multiply(a: int, b:int)->int: 
     return a * b
 
+multiply_tool = StructuredTool.from_function(
+    func=multiply, 
+    name="multiply", 
+    description="Multiply two numbers", 
+    args_schema=MultiplyInput
+)
