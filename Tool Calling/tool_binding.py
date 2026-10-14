@@ -1,5 +1,5 @@
 from langchain_ollama import ChatOllama
-from langchain_community.tools import tool 
+from langchain_core.tools import tool 
 from langchain_core.messages import HumanMessage
 import requests
 
@@ -13,11 +13,14 @@ def mulitply(a: int, b:int)-> int:
 
 #tool binding
 llm = ChatOllama(
-    model='llama3.2'
+    model='llama3.2', 
+    temperature=0
 )
 
 llm_with_tools =llm.bind_tools([mulitply])
 
 
-result = llm_with_tools.invoke("Hi how are you")
-print(result)
+# result = llm_with_tools.invoke("Hi how are you")
+result = llm_with_tools.invoke("Can you multiply 3 with 10")
+print("content: ", result.content)
+print("Tool calls: ", result.tool_calls)
