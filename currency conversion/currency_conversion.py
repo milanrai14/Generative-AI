@@ -2,6 +2,8 @@ from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
 import requests
+from langchain_core.tools import InjectedToolArg
+from typing import Annotated
 
 @tool
 def get_conversion_factor(base_currency: str, target_currency: str)-> float:
