@@ -25,7 +25,7 @@ messages =[query]
 
 #tool calling
 # result = llm_with_tools.invoke("Hi how are you")
-result = llm_with_tools.invoke("Can you multiply 3 with 10")
+result = llm_with_tools.invoke(messages)
 messages.append(result)
 # print("content: ", result.content)
 # print("Tool calls: ", result.tool_calls)
