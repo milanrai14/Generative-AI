@@ -58,7 +58,9 @@ messages = [HumanMessage("What is the conversion factor between USD anfd NPR, an
 # print(messages)
 # print("*" * 50)
 ai_message = llm_with_tools.invoke(messages)
+messages.append(ai_message)
 # print(ai_message.tool_calls)
+
 
 for tool_call in ai_message.tool_calls:
     #execute the first tool and get the value of conversion rate
@@ -73,3 +75,6 @@ for tool_call in ai_message.tool_calls:
         tool_call['args']['conversion_rate'] = conversion_rate
         tool_message2 = convert.invoke(tool_call)
         messages.append(tool_message2)
+
+final_result = llm_with_tools.invoke(messages).content
+print(final_result)
