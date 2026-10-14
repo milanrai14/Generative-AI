@@ -33,7 +33,7 @@ result = get_conversion_factor.invoke({
     "target_currency": "INR"
 })
 
-print("Conversion rate:", result)
+# print("Conversion rate:", result)
 
 @tool
 def convert(base_currency_value: int, conversion_rate: Annotated[float, InjectedToolArg]) -> float:
@@ -43,7 +43,7 @@ def convert(base_currency_value: int, conversion_rate: Annotated[float, Injected
     return base_currency_value * conversion_rate
 
 result = convert.invoke({'base_currency_value': 10, "conversion_rate": 95.345})
-print(result)
+# print(result)
 
 llm = ChatOllama(
     model='qwen2.5:3b', 
@@ -67,5 +67,10 @@ for tool_call in ai_message.tool_calls:
         #fetch the conversion rate
         conversion_rate = tool_message1.content
         print(conversion_rate)
-
+        messages.append(tool_message1)
     #execute the second tool using the conversion rate from first tool
+    if tool_call['name'] == "convert": 
+        #fetch the current argument
+        tool_call['args']['conversion_rate'] = conversion_rate
+        tool_message2 = convert.invoke(tool_call)
+        print(tool_call)
