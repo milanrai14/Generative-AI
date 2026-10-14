@@ -32,3 +32,6 @@ messages.append(result)
 
 tool_result = mulitply.invoke(result.tool_calls[0])
 messages.append(tool_result)
+
+final_result = llm_with_tools.invoke(messages).content
+print(final_result)
