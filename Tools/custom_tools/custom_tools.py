@@ -1,14 +1,19 @@
 from langchain_core.tools import tool
 
-#step - Create a function 
+#step 1 - Create a function 
 def multiply(a,b): 
     """Multiply two number"""
     return a*b
 
 
-#add type hints
+#step 2- add type hints
 def multiply(a: int, b: int) -> int: 
     """Multiply two numbers"""
     return a*b 
 
-ass 
+#step 3 - add tool decorators 
+@tool
+def multiply(a: int, b: int) -> int: 
+    """Multiply two numbers"""
+    return a*b
+
