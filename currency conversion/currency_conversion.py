@@ -59,3 +59,6 @@ print(messages)
 print("*" * 50)
 ai_message = llm_with_tools.invoke(messages)
 print(ai_message.tool_calls)
+
+for tool_call in ai_message.tool_calls:
+    print(tool_call)
