@@ -26,5 +26,9 @@ def get_conversion_factor(base_currency: str, target_currency: str)-> float:
     return rates[target]
 
 
-result = get_conversion_factor.invoke({"base_currency":"USD","target_currency": "INR"})
-print(result)
+result = get_conversion_factor.invoke({
+    "base_currency": "USD",
+    "target_currency": "INR"
+})
+
+print("Conversion rate:", result)
