@@ -23,7 +23,7 @@ print(multiply.name)
 print(multiply.description)
 print(multiply.args)
 
-#LLM sees this
+#LLM sees this when we connect the llm and tools
 final_result_llm_see = multiply.args_schema.model_json_schema()
 print("*" * 50)
 print(final_result_llm_see)
