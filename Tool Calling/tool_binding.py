@@ -1,6 +1,7 @@
 from langchain_ollama import ChatOllama
 from langchain_core.tools import tool 
 from langchain_core.messages import HumanMessage
+
 import requests
 
 # tool create 
@@ -13,7 +14,7 @@ def mulitply(a: int, b:int)-> int:
 
 #tool binding
 llm = ChatOllama(
-    model='llama3.2', 
+    model='qwen2.5:3b', 
     temperature=0
 )
 
