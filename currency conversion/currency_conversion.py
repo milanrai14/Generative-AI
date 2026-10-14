@@ -48,3 +48,8 @@ llm = ChatOllama(
     temperature=0
 )
 
+#tool bindings
+llm_with_tools = llm.bind_tools([get_conversion_factor, convert])
+
+#tool calling
+messages = [HumanMessage("What is the conversion factor between USD anfd NPR, and based on that can you convert 1o usd to npr ")]
