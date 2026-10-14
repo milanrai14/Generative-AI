@@ -17,3 +17,7 @@ llm = ChatOllama(
 )
 
 llm_with_tools =llm.bind_tools([mulitply])
+
+
+result = llm_with_tools.invoke("Hi how are you")
+print(result)
