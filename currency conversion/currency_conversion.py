@@ -39,3 +39,6 @@ def convert(base_currency_value: int, conversion_rate: float) -> float:
     Given a currency conversion rate this function calculates the target currency value from a given base currency value
     """
     return base_currency_value * conversion_rate
+
+result = convert.invoke({'base_currency_value': 10, "conversion_rate": 95.345})
+print(result)
