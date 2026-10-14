@@ -20,3 +20,7 @@ tools = toolkit.get_tools()
 
 for tool in tools: 
     print(tool.name, "=>", tool.description)
+
+# Invoke directly with a dictionary of arguments
+print(tools[0].invoke({"a": 3, "b": 4}))   # 7   (add)
+print(tools[1].invoke({"a": 3, "b": 4}))   # 12  (multiply)
