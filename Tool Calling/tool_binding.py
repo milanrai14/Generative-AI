@@ -23,5 +23,8 @@ llm_with_tools =llm.bind_tools([mulitply])
 
 # result = llm_with_tools.invoke("Hi how are you")
 result = llm_with_tools.invoke("Can you multiply 3 with 10")
-print("content: ", result.content)
-print("Tool calls: ", result.tool_calls)
+# print("content: ", result.content)
+# print("Tool calls: ", result.tool_calls)
+
+
+print(mulitply.invoke(result.tool_calls[0]))
