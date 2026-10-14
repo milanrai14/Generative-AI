@@ -42,3 +42,9 @@ def convert(base_currency_value: int, conversion_rate: float) -> float:
 
 result = convert.invoke({'base_currency_value': 10, "conversion_rate": 95.345})
 print(result)
+
+llm = ChatOllama(
+    model='qwen2.5:3b', 
+    temperature=0
+)
+
