@@ -55,10 +55,14 @@ llm_with_tools = llm.bind_tools([get_conversion_factor, convert])
 
 #tool calling
 messages = [HumanMessage("What is the conversion factor between USD anfd NPR, and based on that can you convert 1o usd to npr ")]
-print(messages)
-print("*" * 50)
+# print(messages)
+# print("*" * 50)
 ai_message = llm_with_tools.invoke(messages)
-print(ai_message.tool_calls)
+# print(ai_message.tool_calls)
 
 for tool_call in ai_message.tool_calls:
-    print(tool_call)
+    #execute the first tool and get the value of conversion rate
+    if tool_call['name'] =='get_conversion_factor':
+        tool_message1 =get_conversion_factor.invoke(tool_call)
+        print(tool_message1)
+    #execute the second tool using the conversion rate from first tool
