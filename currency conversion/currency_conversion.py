@@ -53,3 +53,7 @@ llm_with_tools = llm.bind_tools([get_conversion_factor, convert])
 
 #tool calling
 messages = [HumanMessage("What is the conversion factor between USD anfd NPR, and based on that can you convert 1o usd to npr ")]
+print(messages)
+print("*" * 50)
+ai_message = llm_with_tools.invoke(messages)
+print(ai_message.tool_calls)
