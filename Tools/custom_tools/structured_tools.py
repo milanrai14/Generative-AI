@@ -15,3 +15,8 @@ multiply_tool = StructuredTool.from_function(
     description="Multiply two numbers", 
     args_schema=MultiplyInput
 )
+
+result = multiply_tool.invoke({'a':3, 'b': 3})
+print(result)
+print(multiply_tool.name)
+print(multiply_tool.description)
