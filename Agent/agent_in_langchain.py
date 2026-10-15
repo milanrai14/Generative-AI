@@ -2,7 +2,6 @@ from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain.agents import create_agent
-from langchain import hub
 import requests
 
 search_tool = DuckDuckGoSearchRun()
@@ -34,6 +33,13 @@ Use the search tool for factual questions that need external information.
 agent = create_agent(
     model=llm,
     tools=[search_tool], 
-    prompt=prompt
+    system_prompt=prompt
 )
 
+result = agent.invoke({
+    "messages": [
+        {"role": "user", "content": "Tell me about Sagarmatha."}
+    ]
+})
+
+print(result["messages"][-1].content)
